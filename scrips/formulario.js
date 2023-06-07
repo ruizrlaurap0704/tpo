@@ -1,25 +1,26 @@
 function validarDatos(){
                 
-	var email = document.getElementById('user-email');
-    var phone = document.getElementById('user-phone');
+	var email = document.getElementById('user-email').value;
+    var phone = document.getElementById('user-phone').value;
+	var name = document.getElementById('user-name').value;
 	
 	var emailValido =  /@/;
+	var phoneValido =  /[0-9]/;
 
-	if( emailValido.test(email.value) ){
-		alert('El formato del email es válido!');
-		return true;
-	}else{
-		alert('El formato del email es inválido');
-		return false;
+	if (email.length != 0 && phone.length != 0 && name.length != 0)
+	{
+		if(!emailValido.test(email)){
+			alert('El formato del email es inválido!');
+			return true;
+		}
+		
+		if (!phoneValido.test(phone)){
+			alert('El formato del teléfono es inválido, debe ser numerico!');
+			return true;
+		} 
+
+	} else {
+		alert('Falta indicar email, telefono o nombre en el formulario');
 	}
-
-    if( isNaN(phone.value) ){
-        alert('El formato del teléfono es inválido!');
-        return true;
-    } else {
-        alert('El formato del teléfono es válido!');
-        return false;
-    }
-
 } 
 

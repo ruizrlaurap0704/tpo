@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💧Agua Purificada</title>
-    <link rel="preload" href="css/normalize.css" as="style">
-    <link rel="stylesheet" href="css/normalize.css">
     <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;700&display=swap" rel="stylesheet">
     <link rel="preload" href="css/styles.css" as="style">
     <link href="css/styles.css" rel="stylesheet">
@@ -35,7 +33,7 @@
                 </svg>
                 <p>Buenos Aires, Argentina</p>
             </div>
-            <a class="boton" href="#">Contactar</a>
+            <a aria-label="Chat on WhatsApp" href="https://wa.me/5491134483476"><img alt="Chat on WhatsApp" src="img/WhatsAppButtonGreenLarge.jpg"/></a>
         </div>
     </section>
 
@@ -47,8 +45,8 @@
                     <legend>Contactar llenando todos los campos</legend>
                 <div class="contenedor-campos">
                     <div class="campo">
-                        <label>Nombre</label>
-                        <input class="input-text" type="text" placeholder="Tu Nombre">
+                        <label for="user-name">Nombre</label>
+                        <input id="user-name" class="input-text" type="text" placeholder="Tu Nombre">
                     </div>
                     <div class="campo">
                         <label for="user-phone">Teléfono</label>
@@ -99,6 +97,6 @@
             </a>
         </div>
     </footer>
-    <script src="/scrips/formulario.js"></script>
+    <script src="scrips/formulario.js"></script>
 </body>
 </html>
