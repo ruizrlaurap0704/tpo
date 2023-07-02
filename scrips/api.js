@@ -1,24 +1,20 @@
-const URL_API = 'https://fakestoreapi.com/products';
-
-
-fetch(URL_API)
-      .then(response => response.json())
-      .then(data => mostrarData(data))
-      .catch(error => console.log(error))
-
-
-const mostrarData = (data) => {
-      console.log(data)
-
-      let body = ''
-      data.forEach(element => {
-            body += `   <div>id: ${element.id}</div> 
-                        <div>Titulo: ${element.title}</div>   
-                        <div>Precio: ${element.price}</div>`
-      })
-
-      document.getElementById('cliente').innerHTML = body
-
-}
-      
+   const getNombreAxios = async()=>{
+      try{
+          const respuesta = await axios(`https://fakestoreapi.com/products`)
+          console.log("Respuesta:", respuesta.data);
+  
+          const {createApp} = Vue 
+              createApp({
+                  data(){
+                      return{
+                          datos: respuesta.data
+                      }
+                  }
+              }).mount("#api-axios")
+  
+      }catch(error){console.log("Hubo un error", error)}
+        
+  }
+  
+  getNombreAxios()
 

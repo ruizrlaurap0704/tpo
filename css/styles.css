@@ -273,3 +273,6 @@ h1, h2, h3 {
     text-align: center;
 }
 
+.container{
+    max-width:50vw;
+}
