@@ -1,8 +1,8 @@
 CREATE DATABASE TPO;
 
-USE TPO;
+/* DROP TABLE IF EXISTS `producto`; */
 
-CREATE TABLE datos_cliente (
+CREATE TABLE cliente (
     ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL DEFAULT "",
     telefono INT(11) NOT NULL DEFAULT 0,
@@ -10,4 +10,7 @@ CREATE TABLE datos_cliente (
     texto VARCHAR(400) NOT NULL DEFAULT ""
 );
 
-INSERT INTO ciudad (nombre, telefono,email,texto) VALUES ('Kabul',1234567,'nombre@dominio','texto1');
+
+USE TPO;
+
+INSERT INTO cliente (nombre, telefono,email,texto) VALUES ('Kabul',1234567,'nombre@dominio','texto1');
