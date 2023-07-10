@@ -105,17 +105,24 @@
             <div>
                 <div id="api-axios">
                     <div v-for="dato in datos">
-                        <div class="card border-warning mb-3" style="width: 18rem;">
-                            <div class="card-body">   
-                                <p>
-                                    ID: {{dato.id}} <br>
-                                    TITULO: {{dato.title}} <br>
-                                    DESCRIPCION: {{dato.description}} <br>
-                                    PRECIO: {{dato.price}} USD <br>    
+                            <div class="card-item">     
+                                <div class="item">
+                                    <span>ID: {{dato.id}}</span>
+                                </div>
+                                <div class="item">
+                                    <span>TITULO: {{dato.title}}</span>
+                                </div>
+                                <div class="item">
+                                    <span>DESCRIPCION: {{dato.description}}</span>
+                                </div>
+                                <div class="item">
+                                    <span>PRECIO: {{dato.price}} USD</span>
+                                </div>
+                                <div class="item">
                                     <button type="button" class="btn btn-primary">Comprar</button>
-                                </p>                           
-                            </div>
-                          </div>
+                                </div>
+                            </div>                           
+                          
                     </div>
                 </div>
             </div>

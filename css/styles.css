@@ -276,3 +276,20 @@ h1, h2, h3 {
 .container{
     max-width:50vw;
 }
+
+.card-item {
+    display: flex;
+    flex-wrap: wrap;
+    
+    border: #FFC107 solid 1px;
+    border-radius: 5px;    
+    margin: 5px;    
+    
+  }
+  
+  .item {    
+    flex: 0 0 auto;
+    margin-right: 10px;
+    width: 200px;
+  }
+  
