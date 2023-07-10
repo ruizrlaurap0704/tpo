@@ -1,21 +1,21 @@
 function validacion_envio_datos(){
             
-	var nombre = document.getElementById('nombre').value;
-	var telefono = document.getElementById('telefono').value;
-	var email = document.getElementById('email').value;
-	var texto = document.getElementById('texto').value;
+	var n = document.getElementById('nombre').value;
+	var t = document.getElementById('telefono').value;
+	var e = document.getElementById('email').value;
+	var tx = document.getElementById('texto').value;
 	
 	console.log(nombre, telefono, email, texto)
 	// VALIDACION DE DATOS
 	var emailValido =  /@/;
 	var phoneValido =  /[0-9]/;
-	if (email.length != 0 && telefono.length != 0 && nombre.length != 0 && texto.length != 0)
+	if (e.length != 0 && t.length != 0 && n.length != 0 && tx.length != 0)
 	{
-		if(!emailValido.test(email)){
+		if(!emailValido.test(e)){
 			alert('El formato del email es inválido!');
 			return true;
 		}		
-		if (!phoneValido.test(telefono)){
+		if (!phoneValido.test(t)){
 			alert('El formato del teléfono es inválido, debe ser numerico!');
 			return true;
 		} 
@@ -26,10 +26,10 @@ function validacion_envio_datos(){
 
 	// ENVIO DE DATOS A LA BASE DE DATOS
 	let cliente = {
-        nombre: nombre,
-        telefono: telefono,
-        email: email,
-        texto: texto
+        nombre: n,
+        telefono: t,
+        email: e,
+        texto: tx
     }
 
     let url = "http://127.0.0.1:5000/clientes"
