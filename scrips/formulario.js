@@ -5,6 +5,7 @@ function validacion_envio_datos(){
 	var email = document.getElementById('email').value;
 	var texto = document.getElementById('texto').value;
 	
+	console.log(nombre, telefono, email, texto)
 	// VALIDACION DE DATOS
 	var emailValido =  /@/;
 	var phoneValido =  /[0-9]/;
@@ -21,14 +22,14 @@ function validacion_envio_datos(){
 	} else {
 		alert('Falta información en el formulario');
 	}
-	alert("Envío exito!")
+	// alert("Envío exito!")
 
 	// ENVIO DE DATOS A LA BASE DE DATOS
 	let cliente = {
-        n: nombre,
-        t: telefono,
-        e: email,
-        tx: texto
+        nombre: nombre,
+        telefono: telefono,
+        email: email,
+        texto: texto
     }
 
     let url = "http://localhost:5000/clientes"
@@ -36,15 +37,16 @@ function validacion_envio_datos(){
 	var options = {
         body: JSON.stringify(cliente),
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json'},
     }
 
+	// Faltaria agregar async y await
     fetch(url, options)
-        .then(function () {
-            console.log("creado")
+        .then(res => {
+            console.log(res)
             alert("Grabado")
             // Devuelve el href (URL) de la página actual
-            window.location.href = "./contacto.html";  
+            // window.location.href = "./contacto.html";  
             // Handle response we get from the API
         })
         .catch(err => {
@@ -56,6 +58,6 @@ function validacion_envio_datos(){
 		
 	console.log(cliente)
 
-	alert("Detener?")
+	// alert("Detener?")
 } 
 
