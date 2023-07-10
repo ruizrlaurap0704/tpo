@@ -8,12 +8,15 @@ from flask_marshmallow import Marshmallow
 app = Flask(__name__)
 
 # Usar Cors para dar acceso a las rutas(ebdpoint) desde frontend
-CORS(app)
+# CORS(app)
+
+
+CORS(app, supports_credentials=True, allow_headers=["Content-Type"])
 
 # CONFIGURACIÓN A LA BASE DE DATOS DESDE app
 #  (SE LE INFORMA A LA APP DONDE UBICAR LA BASE DE DATOS)
                                                     # //username:password@url/nombre de la base de datos
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:@127.0.0.1:3306/tpo'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:Desi*1984@127.0.0.1:3306/tpo'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False 
 
 # COMUNICAR LA APP CON SQLALCHEMY
@@ -37,8 +40,8 @@ class Cliente(db.Model):
         self.texto = texto
 
 # CÓDIGO PARA CREAR LAS TABLAS DEFINIDAS EN LAS CLASES
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 
 # CREAR UNA CLASE  ClienteSchema, DONDE SE DEFINEN LOS CAMPOS DE LA TABLA
 class ClienteSchema(ma.Schema):
@@ -58,6 +61,19 @@ clientes_schema = ClienteSchema(many=True)
 # '/productos/<id>' ENDPOINT PARA BORRAR UN PRODUCTO POR ID: DELETE
 # '/productos/<id>' ENDPOINT PARA MODIFICAR UN PRODUCTO POR ID: PUT
 
+
+# @app.after_request
+# def after_request(response):
+#     response.headers.add("Access-Control-Allow-Origin","http://localhost:5000")
+#     response.headers.add("Access-Control-Allow-Headers","Content-Type")
+#     response.headers.add("Access-Control-Allow-Methods", "GET", "POST")
+#     response.headers.add('Access-Control-Allow-Credentials', 'true')
+
+@app.route("/")
+def home():
+    return "Hello World!"
+
+
 @app.route("/clientes", methods=['GET'])
 def get_clientes():
                     # select * from clientes
@@ -65,7 +81,6 @@ def get_clientes():
     # Almacena un listado de objetos
 
     return clientes_schema.jsonify(all_clientes)
-
 
 @app.route("/clientes", methods=['POST'])
 def create_clientes():
@@ -78,14 +93,20 @@ def create_clientes():
         "texto": "texto"
     }
     """
-    nombre = request.json['nombre']
-    telefono = request.json['telefono']
-    email = request.json['email']
-    texto = request.json['texto']
+    # La función data guarda los datos  
+    data = request.get_json()
+    nombre = data['nombre']
+    telefono = data['telefono']
+    email = data['email']
+    texto = data['texto']
+    
 
     new_cliente = Cliente(nombre, telefono, email, texto)
+    
     db.session.add(new_cliente)
+    
     db.session.commit()
+        
 
     return cliente_schema.jsonify(new_cliente)
 
@@ -119,7 +140,7 @@ def update_cliente(id):
     cliente=Cliente.query.get(id)
  
     #  Recibir los datos a modificar
-    nombre = request.json['nombre']
+    nombre = new_func()
     telefono = request.json['telefono']
     email = request.json['email']
     texto = request.json['texto']
@@ -133,6 +154,9 @@ def update_cliente(id):
     db.session.commit()
 # Para ello, usar el objeto producto_schema para que convierta con                     # jsonify el dato recién eliminado que son objetos a JSON  
     return cliente_schema.jsonify(cliente)
+
+def new_func():
+    return request.json['nombre']
 
 
 
