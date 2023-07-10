@@ -32,7 +32,7 @@ function validacion_envio_datos(){
         texto: texto
     }
 
-    let url = "http://localhost:5000/clientes"
+    let url = "http://127.0.0.1:5000/clientes"
    
 	var options = {
         body: JSON.stringify(cliente),
@@ -51,11 +51,10 @@ function validacion_envio_datos(){
         })
         .catch(err => {
             //this.errored = true
+			console.error(err);
             alert("Error al grabar" )
-            console.error(err);
         })
 
-		
 	console.log(cliente)
 
 	// alert("Detener?")
